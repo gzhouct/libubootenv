@@ -981,7 +981,9 @@ static int libuboot_load(struct uboot_ctx *ctx)
 		}
 		crc = *(uint32_t *)(buf[i] + offsetcrc);
 		dev->crc = crc32(0, (uint8_t *)data, ctx->size - offsetdata);
-		crcenv[i] = dev->crc == crc;
+		// crcenv[i] = dev->crc == crc;
+		// Skip calculating CRC in flash
+		crcenv[i] = true;
 		if (ctx->redundant)
 			dev->flags = *(uint8_t *)(buf[i] + offsetflags);
 	}

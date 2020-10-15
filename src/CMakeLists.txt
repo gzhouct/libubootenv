@@ -33,7 +33,7 @@ set(exec_prefix ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR})
 set(includedir  ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR})
 set(libdir      ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR})
 
-configure_file(${CMAKE_SOURCE_DIR}/src/libubootenv.pc.in ${CMAKE_BINARY_DIR}/libubootenv.pc @ONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/libubootenv.pc.in ${CMAKE_BINARY_DIR}/libubootenv.pc @ONLY)
 set(LIBUBOOTENV_PKG_CONFIG_FILES ${CMAKE_BINARY_DIR}/libubootenv.pc)
 message(STATUS "Generate ${LIBUBOOTENV_PKG_CONFIG_FILES}")
 # Install pkg-config files
