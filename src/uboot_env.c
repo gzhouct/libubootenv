@@ -920,6 +920,7 @@ int libuboot_env_store(struct uboot_ctx *ctx)
 	*(uint32_t *)image = crc32(0, (uint8_t *)data, ctx->size - offsetdata);
 
 	copy = ctx->redundant ? (ctx->current ? 0 : 1) : 0;
+	printf("write to copy %d\n", copy);
 	ret = devwrite(ctx, copy, image);
 	free(image);
 
@@ -981,9 +982,9 @@ static int libuboot_load(struct uboot_ctx *ctx)
 		}
 		crc = *(uint32_t *)(buf[i] + offsetcrc);
 		dev->crc = crc32(0, (uint8_t *)data, ctx->size - offsetdata);
-		// crcenv[i] = dev->crc == crc;
+		crcenv[i] = dev->crc == crc;
 		// Skip calculating CRC in flash
-		crcenv[i] = true;
+		// crcenv[i] = true;
 		if (ctx->redundant)
 			dev->flags = *(uint8_t *)(buf[i] + offsetflags);
 	}
